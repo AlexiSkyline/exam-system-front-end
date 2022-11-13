@@ -7,40 +7,78 @@
 
                     <h1 class="text-center">Account Registration</h1>
 
-                    <form action="">
+                    <form (ngSubmit)="forSubmit()">
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Name</mat-label>
-                            <input matInput placeholder="Enter your name">
+                            <input required [(ngModel)]="user.setName" name="name" matInput placeholder="Enter your name"  #name="ngModel">
+
+                            <mat-error *ngIf="name.invalid && ( name.dirty || name.touched )">
+                                <mat-error *ngIf="name.errors?.['required']">
+                                    The Name is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Surname</mat-label>
-                            <input matInput placeholder="Enter your Surname">
+                            <input required [(ngModel)]="user.setSurname" name="surname" matInput placeholder="Enter your Surname" #surname="ngModel">
+
+                            <mat-error *ngIf="surname.invalid && ( surname.dirty || surname.touched )">
+                                <mat-error *ngIf="surname.errors?.['required']">
+                                    The Surname is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Username</mat-label>
-                            <input matInput placeholder="Enter your Username">
+                            <input required [(ngModel)]="user.setUsername" name="username" matInput placeholder="Enter your Username" #username="ngModel">
+                            <mat-hint>Username must be unique</mat-hint>
+
+                            <mat-error *ngIf="username.invalid && ( username.dirty || username.touched )">
+                                <mat-error *ngIf="username.errors?.['required']">
+                                    The Username is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>PhoneNumber</mat-label>
-                            <input matInput placeholder="Enter your PhoneNumber">
+                            <input required [(ngModel)]="user.setPhoneNumber" name="phoneNumber" matInput placeholder="Enter your PhoneNumber" #phoneNumber="ngModel">
+
+                            <mat-error *ngIf="phoneNumber.invalid && ( phoneNumber.dirty || phoneNumber.touched )">
+                                <mat-error *ngIf="phoneNumber.errors?.['required']">
+                                    The PhoneNumber is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input type="email" matInput placeholder="Enter your Email">
+                            <input required [(ngModel)]="user.setEmail" name="email" type="email" matInput placeholder="Enter your Email" #email="ngModel">
+                            <mat-hint>Email must be unique</mat-hint>
+
+                            <mat-error *ngIf="email.invalid && ( email.dirty || email.touched )">
+                                <mat-error *ngIf="email.errors?.['required']">
+                                    The Email is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input type="password" matInput placeholder="Enter your Password">
+                            <input required [(ngModel)]="user.setPassword" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel" [email]="true">
+
+                            <mat-error *ngIf="password.invalid && ( password.dirty || password.touched )">
+                                <mat-error *ngIf="password.errors?.['required']">
+                                    The Password is Required
+                                </mat-error>
+                            </mat-error>
                         </mat-form-field>
 
                         <div class="container text-center">
                             <button mat-raised-button color="primary">Register</button>
-                            <button style="margin-left: 20px;" mat-raised-button color="warn">Clear fields</button>
+                            <button type="reset" style="margin-left: 20px;" mat-raised-button color="warn">Clear fields</button>
                         </div>
                         <br><br><br>
                     </form>
