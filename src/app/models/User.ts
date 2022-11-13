@@ -6,8 +6,6 @@ export class User {
     private email: string = '';
     private phoneNumber: string = '';
 
-    constructor() {}
-
     public set setUsername( username: string ) {
         this.username = username;
     }

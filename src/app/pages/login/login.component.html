@@ -1,0 +1,45 @@
+<div class="bootstrap-wrapper">
+    <div class="container">
+        <div class="row mt-20">
+            <div class="col-md-6 offset-md-3">
+                <mat-card>
+                    <div class="container text-center">
+                        <img src="../../../assets/intimidad.png" width="70" height="70">
+
+                        <h1 class="text-center">Sign In</h1>
+
+                        <form>
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Username</mat-label>
+                                <input required [(ngModel)]="login.setUsername" name="username" matInput placeholder="Enter your Username" #username="ngModel">
+    
+                                <mat-error *ngIf="username.invalid && ( username.dirty || username.touched )">
+                                    <mat-error *ngIf="username.errors?.['required']">
+                                        The Username is Required
+                                    </mat-error>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width" appearance="outline">
+                                <mat-label>Password</mat-label>
+                                <input required [(ngModel)]="login.setPassword" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel" [email]="true">
+    
+                                <mat-error *ngIf="password.invalid && ( password.dirty || password.touched )">
+                                    <mat-error *ngIf="password.errors?.['required']">
+                                        The Password is Required
+                                    </mat-error>
+                                </mat-error>
+                            </mat-form-field>
+
+                            <div class="container text-center">
+                                <button mat-raised-button color="primary">Login</button>
+                                <button type="reset" style="margin-left: 20px;" mat-raised-button color="warn">Clear fields</button>
+                            </div>
+                            <br><br>
+                        </form>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
