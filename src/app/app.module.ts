@@ -21,6 +21,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 
+import { AuthInterceptorProviders } from './services/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,7 @@ import { HomeComponent } from './pages/home/home.component';
     MatToolbarModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [ AuthInterceptorProviders ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

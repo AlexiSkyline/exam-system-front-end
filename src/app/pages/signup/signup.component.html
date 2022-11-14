@@ -55,7 +55,7 @@
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Email</mat-label>
-                            <input required [(ngModel)]="user.setEmail" name="email" type="email" matInput placeholder="Enter your Email" #email="ngModel">
+                            <input required [(ngModel)]="user.setEmail" name="email" type="email" matInput placeholder="Enter your Email" #email="ngModel" [email]="true">
                             <mat-hint>Email must be unique</mat-hint>
 
                             <mat-error *ngIf="email.invalid && ( email.dirty || email.touched )">
@@ -67,7 +67,7 @@
 
                         <mat-form-field class="full-width" appearance="outline">
                             <mat-label>Password</mat-label>
-                            <input required [(ngModel)]="user.setPassword" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel" [email]="true">
+                            <input required [(ngModel)]="user.setPassword" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel">
 
                             <mat-error *ngIf="password.invalid && ( password.dirty || password.touched )">
                                 <mat-error *ngIf="password.errors?.['required']">
