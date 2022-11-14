@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
 
 import URL_SERVICE from './helper';
 
@@ -9,6 +10,7 @@ import { Role } from '../models/Role';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
+    public loginStatusSubject = new Subject<boolean>();
     constructor( private httpClient: HttpClient ) {}
     
     public login( login: Login ) {
@@ -51,8 +53,9 @@ export class LoginService {
         return null;
     }
     
-    public getUserRole(): Array<Role> {
-        return this.getUser().roles;
+    public getUserRole(): Role {
+        const infoRole = this.getUser().roles[0];
+        return new Role( infoRole.id, infoRole.name );
     }
 
     public getCurrentUser() {

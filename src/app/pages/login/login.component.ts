@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from 'src/app/models/Login';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { Login } from 'src/app/models/Login';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent implements OnInit {
     public login: Login = new Login;
-    constructor( private snack: MatSnackBar, private loginService: LoginService ) { }
+    constructor( private snack: MatSnackBar, private loginService: LoginService, private router: Router ) { }
 
     ngOnInit(): void {}
 
@@ -35,13 +37,29 @@ export class LoginComponent implements OnInit {
                 this.loginService.loginUser( data.token );
                 this.loginService.getCurrentUser().subscribe({
                     next: ( user: any ) => {
-                        console.log( user );
+                        this.loginService.setUser( user );
+                        this.redirectUser( this.loginService.getUserRole().getName );
                     }
                 });
             },
             error: ( error ) => {
-                console.log( error );
+                this.snack.open( 'The data are incorrect, please try again', 'Ok', {
+                    duration: 3000
+                });
             }
         });
+    }
+
+    private redirectUser( typeRole: string ): void {
+        if( typeRole == 'ROLE_ADMIN' ) {
+            this.router.navigate([ '/admin' ]);
+            this.loginService.loginStatusSubject.next( true );
+        } else if( typeRole == 'ROLE_NORMAL' ) {
+            this.router.navigate([ '/user-dashboard' ]);
+            this.loginService.loginStatusSubject.next( true );
+        } else {
+            this.loginService.logOut();
+            this.loginService.loginStatusSubject.next( false );
+        }
     }
 }
