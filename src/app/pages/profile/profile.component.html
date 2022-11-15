@@ -1,0 +1,49 @@
+<mat-card>
+    <h1 class="text-center">Account Information</h1>
+    <mat-card-content>
+        <div class="bootstrap-wrapper">
+            <div class="container">
+                <div class="text-center">
+                    <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" alt="default.jgp" class="profile-image">
+                    <h1 class="mt20">{{ userInfo.name }} {{ userInfo.surname }}</h1>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <table class="table text-center">
+                            <tr>
+                                <td>ID</td>
+                                <td>{{ userInfo.id }}</td>
+                            </tr>
+                            <tr>
+                                <td>Full Name</td>
+                                <td>{{ userInfo.name }} {{ userInfo.surname }}</td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number</td>
+                                <td>{{ userInfo.phoneNumber }}</td>
+                            </tr>
+                            <tr>
+                                <td>Email</td>
+                                <td>{{ userInfo.email }}</td>
+                            </tr>
+                            <tr>
+                                <td>Role</td>
+                                <td>{{ userInfo.roles[0].name.split('_')[1] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Status</td>
+                                <td>{{ userInfo.enabled ? 'Active' : 'Not Active' }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <mat-card-actions class="text-center">
+            <button mat-raised-button color="primary">Update</button>
+            <button mat-raised-button color="accent">Share</button>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-card>

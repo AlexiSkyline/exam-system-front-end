@@ -14,7 +14,7 @@
         Sign Up
     </a>
 
-    <button *ngIf="loginService.isLoggedIn() && currentUser" mat-button style="margin-right: 70px;" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <button *ngIf="loginService.isLoggedIn() && currentUser" mat-button style="margin-right: 70px;" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon" routerLink="/admin/profile">
         User: {{ loginService.getUser().username }}
     </button>
 
