@@ -1,12 +1,12 @@
 export class Category {
-    private id: number = 0;
-    private title: string = '';
-    private description: string = '';
+    private id: number;
+    private title: string;
+    private description: string;
 
-    constructor( id: number, title: string, description: string ) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
+    constructor( id?: number, title?: string, description?: string ) {
+        this.id = id || 0;
+        this.title = title || '';
+        this.description = description || '';
     }
 
     public set setId( id: number ) {
