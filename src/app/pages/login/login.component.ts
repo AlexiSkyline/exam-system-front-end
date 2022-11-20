@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
 
         this.loginService.login( this.login ).subscribe({
             next: ( data: any ) => {
-                console.log( data );
                 this.loginService.loginUser( data.token );
                 this.loginService.getCurrentUser().subscribe({
                     next: ( user: any ) => {

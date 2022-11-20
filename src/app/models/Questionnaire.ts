@@ -1,22 +1,20 @@
 import { Category } from './Category';
 
-interface IBuilder<T> {
-    build(): T;
-}
-
 export class Questionnaire {
     private id: number;
     private title: string;
     private description: string;
     private maxPoints: string;
+    private status: boolean;
     private numberQuestions: number;
     private category: Category;
 
-    constructor( id?: number, title?: string, description?: string, maxPoints?: string, numberQuestions?: number, category?: Category ) {
+    constructor( id?: number, title?: string, description?: string, maxPoints?: string, status?: boolean, numberQuestions?: number, category?: Category ) {
         this.id = id || 0;
         this.title = title || '';
         this.description = description || '';
         this.maxPoints = maxPoints || '';
+        this.status = status || false;
         this.numberQuestions = numberQuestions || 0;
         this.category = category || new Category();
     }
@@ -49,6 +47,13 @@ export class Questionnaire {
         return this.maxPoints;
     }
 
+    public set setStatus( status: boolean ) {
+        this.status = status;
+    }
+    public get getStatus(): boolean {
+        return this.status;
+    }
+
     public set setNumberQuestions( numberQuestions: number ) {
         this.numberQuestions = numberQuestions;
     }
@@ -61,5 +66,29 @@ export class Questionnaire {
     }
     public get getCategory(): Category {
         return this.category;
+    }
+
+    public validateFields(): string {
+        if( this.title.trim() === '' || this.title === null ) {
+            return 'The Questionnaire title is required!!';
+        }
+
+        if( this.description.trim() === '' || this.description === null ) {
+            return 'The Questionnaire Description is required!!';
+        }
+        
+        if( this.maxPoints.trim() === '' || this.maxPoints === null ) {
+            return 'The Questionnaire Max Points is required!!';
+        }
+        
+        if( this.numberQuestions === 0 || this.numberQuestions === null ) {
+            return 'The Questionnaire Number Questions is required!!';
+        }
+
+        if( this.category.getId === 0 || this.numberQuestions === null ) {
+            return 'The Questionnaire Category is required!!';
+        }
+
+        return '';
     }
 }

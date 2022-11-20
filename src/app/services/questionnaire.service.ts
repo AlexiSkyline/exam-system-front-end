@@ -11,4 +11,12 @@ export class QuestionnaireService {
     public getQuestionnaires(): Observable<Questionnaire[]> {
         return this.httpClient.get<Questionnaire[]>( `${ URL_SERVICE }/exam/` );
     }
+
+    public saveQuestionnaires( questionnaire: Questionnaire ){
+        return this.httpClient.post( `${ URL_SERVICE }/exam/`, questionnaire );
+    }
+
+    public deleteQuestionnaires( id: number ) {
+        return this.httpClient.delete( `${ URL_SERVICE }/exam/${ id }/` );
+    }
 }

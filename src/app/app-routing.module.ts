@@ -13,6 +13,7 @@ import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
 import { ViewQuestionnairesComponent } from './pages/admin/view-questionnaires/view-questionnaires.component';
+import { AddQuestionnaireComponent } from './pages/admin/add-questionnaire/add-questionnaire.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,10 @@ const routes: Routes = [
       {
         path: 'questionnaires',
         component: ViewQuestionnairesComponent
+      },
+      {
+        path: 'add-questionnaire',
+        component: AddQuestionnaireComponent
       }
     ]
   },

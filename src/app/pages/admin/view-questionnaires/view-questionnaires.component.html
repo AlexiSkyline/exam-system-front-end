@@ -5,8 +5,10 @@
                 {{ questionnaire.getTitle }}
             </mat-card-title>
 
-            <mat-card-subtitle>
-                {{ questionnaire.getCategory.getTitle }}
+            <mat-card-subtitle class="mt10">
+                <b>Description:</b> {{ questionnaire.getDescription }}
+                <br>
+                <b>Category:</b> {{ questionnaire.getCategory.getTitle }}
             </mat-card-subtitle>
     </mat-card-header>
     
@@ -17,10 +19,11 @@
             <button mat-stroked-button color="primary" class="ml20">Questions {{ questionnaire.getNumberQuestions }}</button>
             <button mat-flat-button class="ml20 btn-update">Update</button>
             <button mat-flat-button color="primary" class="ml20">Tentative</button>
+            <button mat-flat-button color="warn" class="ml10" (click) = "deleteQuestionnaire( questionnaire.getId )">Delete</button>
         </mat-card-actions>
     </mat-card-content>
 </mat-card>
 
-<div class="container text-center mt20">
-    <button mat-raised-button class="btn-success">Add Questionnaire</button>
+<div class="container text-center my20">
+    <button routerLink="/admin/add-questionnaire" mat-raised-button class="btn-success">Add Questionnaire</button>
 </div>
