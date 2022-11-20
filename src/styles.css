@@ -50,3 +50,29 @@ body {
 .ml70{
     margin-left: 70px !important;
 }
+
+.my20{
+    margin: 20px 20px 20px 0px !important;
+}
+
+.btn-success {
+    background-color: #14A44D;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #2c874f;
+}
+
+.btn-update {
+    background-color: #F79256;
+    color: white;
+}
+
+.btn-update:hover {
+    background-color: #a77346;
+}
+
+.p10 {
+    padding: 10px;
+}

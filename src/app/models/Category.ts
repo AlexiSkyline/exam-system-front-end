@@ -29,4 +29,16 @@ export class Category {
     public get getDescription(): string {
         return this.description;
     }
+
+    public validateFields(): string {
+        if( this.title.trim() === '' || this.title === null ) {
+            return 'The Category title is required!!';
+        }
+
+        if( this.description.trim() === '' || this.description === null ) {
+            return 'The Category Description is required!!';
+        }
+
+        return '';
+    }
 }

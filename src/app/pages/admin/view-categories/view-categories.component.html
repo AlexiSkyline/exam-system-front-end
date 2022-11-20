@@ -1,6 +1,6 @@
-<mat-card>
+<mat-card class="my20">
     <mat-list>
-        <div mat-subheader>All Categories</div>
+        <div mat-subheader>Available Categories List</div>
 
         <mat-list-item *ngFor="let category of listCategory">
             <mat-icon mat-list-icon>category</mat-icon>
@@ -11,6 +11,6 @@
     </mat-list>
 
     <div class="container text-center mt20">
-        <button routerLink="/admin/add-category" mat-raised-button color="primary">Add Category</button>
+        <button routerLink="/admin/add-category" mat-raised-button class="btn-success">Add Category</button>
     </div>
 </mat-card>

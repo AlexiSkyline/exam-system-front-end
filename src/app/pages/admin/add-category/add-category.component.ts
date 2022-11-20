@@ -14,12 +14,14 @@ export class AddCategoryComponent implements OnInit {
     public category: Category = new Category();
     constructor( private categoryService: CategoryService, private snack: MatSnackBar, private router: Router ) {}
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     public onSubmit(): void {
-        if( this.category.getTitle.trim() == '' || this.category.getTitle == null ) {
-            this.snack.open( 'The title is required!!' );
+        const errorMessage = this.category.validateFields();
+        if( errorMessage !== '' ) {
+            this.snack.open( errorMessage,  'Ok', {
+                duration: 3000
+            });
             return;
         }
 

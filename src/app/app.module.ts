@@ -30,6 +30,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { WelcomeComponent } from './pages/admin/welcome/welcome.component';
 import { ViewCategoriesComponent } from './pages/admin/view-categories/view-categories.component';
 import { AddCategoryComponent } from './pages/admin/add-category/add-category.component';
+import { ViewQuestionnairesComponent } from './pages/admin/view-questionnaires/view-questionnaires.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
     ProfileComponent,
     WelcomeComponent,
     ViewCategoriesComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    ViewQuestionnairesComponent
   ],
   imports: [
     BrowserModule,

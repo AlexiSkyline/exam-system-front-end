@@ -2,6 +2,7 @@ import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/Category';
 import { CategoryService } from '../../../services/category.service';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-view-categories',
@@ -13,13 +14,8 @@ export class ViewCategoriesComponent implements OnInit {
     constructor( private categoryService: CategoryService ) {}
 
     ngOnInit(): void {
-        this.categoryService.getCategories().subscribe({
-            next: ( data: any ) => {
-                data.forEach(( category: any )=> this.listCategory.push( new Category( category.id, category.title, category.description ) ) );
-            },
-            error: () => {
-                Swal.fire( 'Error!!', 'Error loading categories', 'error' );
-            }
-        });
+        this.categoryService.getCategories().pipe(
+            tap(( data ) => data.forEach(( category: any )=> this.listCategory.push( new Category( category.id, category.title, category.description ) ) ))
+        ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading categories', 'error' ) });
     }
 }

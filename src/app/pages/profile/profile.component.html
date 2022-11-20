@@ -1,14 +1,13 @@
-<mat-card>
+<mat-card class="my20">
     <h1 class="text-center">Account Information</h1>
     <mat-card-content>
         <div class="bootstrap-wrapper">
             <div class="container">
                 <div class="text-center">
-                    <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" alt="default.jgp" class="profile-image">
-                    <h1 class="mt20">{{ userInfo.name }} {{ userInfo.surname }}</h1>
+                    <img src="https://www.unmc.edu/cihc/_images/faculty/default.jpg" alt="default.jgp" class="profile-image" width="90" height="90">
                 </div>
 
-                <div class="row">
+                <div class="row mt10">
                     <div class="col-md-10 offset-md-1">
                         <table class="table text-center">
                             <tr>
@@ -42,7 +41,7 @@
         </div>
 
         <mat-card-actions class="text-center">
-            <button mat-raised-button color="primary">Update</button>
+            <button mat-raised-button class="btn-update">Update</button>
             <button mat-raised-button color="accent">Share</button>
         </mat-card-actions>
     </mat-card-content>
