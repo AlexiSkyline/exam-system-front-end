@@ -17,7 +17,7 @@
             <button mat-flat-button color="primary">Questions</button>
             <button mat-stroked-button color="primary" class="ml20">Max Points {{ questionnaire.getMaxPoints }}</button>
             <button mat-stroked-button color="primary" class="ml20">Questions {{ questionnaire.getNumberQuestions }}</button>
-            <button mat-flat-button class="ml20 btn-update">Update</button>
+            <button [routerLink]="'/admin/questionnaire/' + questionnaire.getId" mat-flat-button class="ml20 btn-update">Update</button>
             <button mat-flat-button color="primary" class="ml20">Tentative</button>
             <button mat-flat-button color="warn" class="ml10" (click) = "deleteQuestionnaire( questionnaire.getId )">Delete</button>
         </mat-card-actions>

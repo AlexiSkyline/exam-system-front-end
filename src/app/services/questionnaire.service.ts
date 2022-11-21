@@ -19,4 +19,12 @@ export class QuestionnaireService {
     public deleteQuestionnaires( id: number ) {
         return this.httpClient.delete( `${ URL_SERVICE }/exam/${ id }/` );
     }
+
+    public getQuestionnaireById( id: Number ): Observable<Questionnaire> {
+        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/${ id }/` );
+    }
+
+    public updateQuestionnaire( questionnaire: Questionnaire ): Observable<Questionnaire> {
+        return this.httpClient.put<Questionnaire>( `${ URL_SERVICE }/exam/`, questionnaire );
+    }
 }
