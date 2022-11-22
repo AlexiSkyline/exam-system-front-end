@@ -8,7 +8,7 @@ export class Question {
     private option3: string;
     private option4: string;
     private answer: string;
-    private questionnaire: Questionnaire;
+    private exam: Questionnaire;
 
     constructor( id?: number, content?: string, image?: string, option1?: string, option2?: string, option3?: string, option4?: string, answer?: string, questionnaire?: Questionnaire ) {
         this.id = id || 0;
@@ -19,7 +19,7 @@ export class Question {
         this.option3 = option3 || '';
         this.option4 = option4 || '';
         this.answer = answer || '';
-        this.questionnaire = questionnaire || new Questionnaire();
+        this.exam = questionnaire || new Questionnaire();
     }
 
     public set setId( id: number ) {
@@ -79,9 +79,37 @@ export class Question {
     }
 
     public set setQuestionnaire( questionnaire: Questionnaire ) {
-        this.questionnaire = questionnaire;
+        this.exam = questionnaire;
     }
     public get getQuestionnaire(): Questionnaire {
-        return this.questionnaire;
+        return this.exam;
+    }
+
+    public validateFields(): string {
+        if( this.content.trim() === '' || this.content === null ) {
+            return 'The Question content is required!!';
+        }
+
+        if( this.option1.trim() === '' || this.option1 === null ) {
+            return 'The Question option 1 is required!!';
+        }
+        
+        if( this.option2.trim() === '' || this.option2 === null ) {
+            return 'The Question option 2 is required!!';
+        }
+
+        if( this.option3.trim() === '' || this.option3 === null ) {
+            return 'The Question option 3 is required!!';
+        }
+
+        if( this.option4.trim() === '' || this.option4 === null ) {
+            return 'The Question option 4 is required!!';
+        }
+
+        if( this.answer.trim() === '' || this.answer === null ) {
+            return 'The Question answer is required!!';
+        }
+
+        return '';
     }
 }

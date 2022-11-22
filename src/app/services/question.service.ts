@@ -11,4 +11,8 @@ export class QuestionService {
     public getQuestionsByExamen( id: number ): Observable<Question[]> {
         return this.httpClient.get<Question[]>( `${ URL_SERVICE }/question/exam/${ id }/` );
     }
+
+    public saveQuestions( question: Question ): Observable<Question> {
+        return this.httpClient.post<Question>( `${ URL_SERVICE }/question/`, question );
+    }
 }

@@ -24,7 +24,6 @@ export class ViewQuestionnaireQuestionsComponent implements OnInit {
         this.questionService.getQuestionsByExamen( this.idQuestionnaire ).pipe(
             tap(( data ) => {
                 this.buildQuestions( data );
-                console.log( this.listQuestions );
             })
         ).subscribe();
     }

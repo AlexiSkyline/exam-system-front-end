@@ -36,6 +36,7 @@ import { ViewQuestionnairesComponent } from './pages/admin/view-questionnaires/v
 import { AddQuestionnaireComponent } from './pages/admin/add-questionnaire/add-questionnaire.component';
 import { UpdateQuestionnaireComponent } from './pages/admin/update-questionnaire/update-questionnaire.component';
 import { ViewQuestionnaireQuestionsComponent } from './pages/admin/view-questionnaire-questions/view-questionnaire-questions.component';
+import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,8 @@ import { ViewQuestionnaireQuestionsComponent } from './pages/admin/view-question
     ViewQuestionnairesComponent,
     AddQuestionnaireComponent,
     UpdateQuestionnaireComponent,
-    ViewQuestionnaireQuestionsComponent
+    ViewQuestionnaireQuestionsComponent,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,
