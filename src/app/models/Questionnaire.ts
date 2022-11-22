@@ -9,13 +9,13 @@ export class Questionnaire {
     private numberQuestions: number;
     private category: Category;
 
-    constructor( id?: number, title?: string, description?: string, maxPoints?: string, status?: boolean, numberQuestions?: number, category?: Category ) {
+    constructor( id?: number, title?: string, description?: string, maxPoints?: string, numberQuestions?: number, status?: boolean, category?: Category ) {
         this.id = id || 0;
         this.title = title || '';
         this.description = description || '';
         this.maxPoints = maxPoints || '';
-        this.status = status || false;
         this.numberQuestions = numberQuestions || 0;
+        this.status = status || false;
         this.category = category || new Category();
     }
 

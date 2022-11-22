@@ -19,4 +19,12 @@ export class QuestionService {
     public deleteQuestion( id: number ) {
         return this.httpClient.delete( `${ URL_SERVICE }/question/${ id }/` );
     }
+
+    public updateQuestion( question: Question ): Observable<Question> {
+        return this.httpClient.put<Question>( `${ URL_SERVICE }/question/`, question );
+    }
+
+    public getQuestionById( id: number ): Observable<Question> {
+        return this.httpClient.get<Question>( `${ URL_SERVICE }/question/${ id }/` );
+    }
 }
