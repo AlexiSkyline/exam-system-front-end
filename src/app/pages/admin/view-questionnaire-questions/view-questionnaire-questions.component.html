@@ -1,0 +1,52 @@
+<h1 class="mt20 text-center">{{ title }} Questions</h1>
+<div class="bootstrap-wrapper my20">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="container text-center">
+          <button mat-raised-button class="btn-success">Add Question</button>
+        </div>
+
+        <mat-card *ngFor = "let question of listQuestions; let i = index" class="mt20">
+          <mat-card-content>
+            <p>
+              <b>{{ i + 1 }}.-</b>
+              <span class="ml10" [innerHTML] = "question.getContent"></span>
+            </p>
+
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-6">
+                  <p>1)<b> {{ question.getOption1 }}</b></p>
+                </div>
+
+                <div class="col-md-6">
+                  <p>2)<b> {{ question.getOption2 }}</b></p>
+                </div>
+
+              </div>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <p>3)<b> {{ question.getOption3 }}</b></p>
+                </div>
+                
+                <div class="col-md-6">
+                  <p>4)<b> {{ question.getOption4 }}</b></p>
+                </div>
+              </div>
+
+              <mat-divider></mat-divider>
+              <p class="mt10">
+                <b>Answer : {{ question.getAnswer }}</b>
+              </p>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions class="ml10 mb10">
+            <button mat-button class="btn-warn">Delete</button>
+            <button mat-button class="btn-update">Update</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </div>

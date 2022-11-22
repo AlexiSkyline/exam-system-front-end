@@ -14,7 +14,7 @@
     
     <mat-card-content>
         <mat-card-actions class="ml10">
-            <button mat-flat-button color="primary">Questions</button>
+            <button [routerLink]="'/admin/view-questions/' + questionnaire.getId + '/' + questionnaire.getTitle" routerLinkActive="router-link-active"  mat-flat-button color="primary">Questions</button>
             <button mat-stroked-button color="primary" class="ml20">Max Points {{ questionnaire.getMaxPoints }}</button>
             <button mat-stroked-button color="primary" class="ml20">Questions {{ questionnaire.getNumberQuestions }}</button>
             <button [routerLink]="'/admin/questionnaire/' + questionnaire.getId" mat-flat-button class="ml20 btn-update">Update</button>

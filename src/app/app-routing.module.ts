@@ -15,6 +15,7 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
 import { ViewQuestionnairesComponent } from './pages/admin/view-questionnaires/view-questionnaires.component';
 import { AddQuestionnaireComponent } from './pages/admin/add-questionnaire/add-questionnaire.component';
 import { UpdateQuestionnaireComponent } from './pages/admin/update-questionnaire/update-questionnaire.component';
+import { ViewQuestionnaireQuestionsComponent } from './pages/admin/view-questionnaire-questions/view-questionnaire-questions.component';
 
 const routes: Routes = [
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: 'questionnaire/:id',
         component: UpdateQuestionnaireComponent
+      },
+      {
+        path: 'view-questions/:id/:title',
+        component: ViewQuestionnaireQuestionsComponent
       }
     ]
   },

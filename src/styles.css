@@ -73,6 +73,15 @@ body {
     background-color: #a77346;
 }
 
+.btn-warn {
+    background-color: #f75656;
+    color: white;
+}
+
+.btn-warn:hover {
+    background-color: #a74646;
+}
+
 .p10 {
     padding: 10px;
 }

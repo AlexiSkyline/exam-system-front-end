@@ -35,6 +35,7 @@ import { AddCategoryComponent } from './pages/admin/add-category/add-category.co
 import { ViewQuestionnairesComponent } from './pages/admin/view-questionnaires/view-questionnaires.component';
 import { AddQuestionnaireComponent } from './pages/admin/add-questionnaire/add-questionnaire.component';
 import { UpdateQuestionnaireComponent } from './pages/admin/update-questionnaire/update-questionnaire.component';
+import { ViewQuestionnaireQuestionsComponent } from './pages/admin/view-questionnaire-questions/view-questionnaire-questions.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { UpdateQuestionnaireComponent } from './pages/admin/update-questionnaire
     AddCategoryComponent,
     ViewQuestionnairesComponent,
     AddQuestionnaireComponent,
-    UpdateQuestionnaireComponent
+    UpdateQuestionnaireComponent,
+    ViewQuestionnaireQuestionsComponent
   ],
   imports: [
     BrowserModule,
