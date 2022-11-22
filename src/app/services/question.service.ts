@@ -15,4 +15,8 @@ export class QuestionService {
     public saveQuestions( question: Question ): Observable<Question> {
         return this.httpClient.post<Question>( `${ URL_SERVICE }/question/`, question );
     }
+
+    public deleteQuestion( id: number ) {
+        return this.httpClient.delete( `${ URL_SERVICE }/question/${ id }/` );
+    }
 }
