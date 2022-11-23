@@ -1,0 +1,41 @@
+<div class="bootstrap-wrapper my20">
+    <div class="container-fluid">
+        <h1 class="text-center">Questionnaire available</h1>
+        <div class="row mt20" *ngIf="listQuestionnaire.length != 0">
+            <div class="col-md-6" *ngFor="let questionnaire of listQuestionnaire">
+                <mat-card class="mb20">
+                    <mat-card-header class="mt20 ml20">
+                        <div mat-card-avatar class="example-header-image"></div>
+                        <mat-card-title>
+                            {{ questionnaire.getTitle }}
+                        </mat-card-title>
+                        
+                        <mat-card-subtitle>
+                            {{ questionnaire.getCategory.getTitle }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+
+                    <mat-card-content class="ml20">
+                        <p>{{ questionnaire.getDescription }}</p>
+                    </mat-card-content>
+                    
+                    <mat-card-actions class="mb10 text-center">
+                        <button mat-button color="accent">Questions : {{ questionnaire.getNumberQuestions }}</button>
+                        <button mat-button color="accent">Max Points : {{ questionnaire.getMaxPoints }}</button>
+                        <br>
+                        <button mat-button class="btn-success mt10">Show</button>
+                        <button mat-button class="btn-update">Start</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+
+        <div class="col-md-12 text-center" *ngIf="listQuestionnaire.length === 0">
+            <mat-card>
+                <mat-card-content>
+                    <h4>There are no Questions in this category</h4>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

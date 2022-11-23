@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
             this.router.navigate([ '/admin' ]);
             this.loginService.loginStatusSubject.next( true );
         } else if( typeRole == 'ROLE_NORMAL' ) {
-            this.router.navigate([ '/user-dashboard' ]);
+            this.router.navigate([ '/user-dashboard/0' ]);
             this.loginService.loginStatusSubject.next( true );
         } else {
             this.loginService.logOut();

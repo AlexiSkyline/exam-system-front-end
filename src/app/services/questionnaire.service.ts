@@ -27,4 +27,16 @@ export class QuestionnaireService {
     public updateQuestionnaire( questionnaire: Questionnaire ): Observable<Questionnaire> {
         return this.httpClient.put<Questionnaire>( `${ URL_SERVICE }/exam/`, questionnaire );
     }
+
+    public getAllQuestionnairesByCategory( id: number ){
+        return this.httpClient.get( `${ URL_SERVICE }/exam/category/${ id }` );
+    }
+
+    public getAllQuestionnairesActives(): Observable<Questionnaire> {
+        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/active`);
+    }
+
+    public getAllQuestionnairesActivesByCategory( id: number ): Observable<Questionnaire> {
+        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/category/active/${ id }` );
+    }
 }

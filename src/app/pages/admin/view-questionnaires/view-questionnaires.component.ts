@@ -19,7 +19,7 @@ export class ViewQuestionnairesComponent implements OnInit {
             tap(( data ) => data.forEach(( questionnaire: any ) =>{
                 const category = new Category( questionnaire.category.id, questionnaire.category.title, questionnaire.category.description  );
                 this.listQuestionnaire.push( new Questionnaire( questionnaire.id, questionnaire.title, questionnaire.description, 
-                    questionnaire.maxPoints, questionnaire.status, questionnaire.numberQuestions, category  ) )} ))
+                    questionnaire.maxPoints, questionnaire.numberQuestions, questionnaire.status, category  ) )} ))
         ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
     }
 
