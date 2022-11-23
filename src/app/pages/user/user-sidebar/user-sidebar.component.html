@@ -1,12 +1,8 @@
  <mat-card class="mt20">
     <mat-action-list>
-        <div mat-subheader>Menu</div>
-        <button routerLink="/user-dashboard/0" mat-list-item>
-            <mat-icon mat-list-icon>home</mat-icon> Home
-        </button>
-
-        <button mat-list-item>
-            <mat-icon mat-list-icon>quiz</mat-icon>Questionnaire
+        <div mat-subheader>Categories available</div>
+        <button mat-list-item  routerLink="/user-dashboard/0">
+            <mat-icon mat-list-icon>quiz</mat-icon>Questionnaires
         </button>
 
         <button [routerLink]="'/user-dashboard/'+ category.getId" mat-list-item *ngFor="let category of listCategory">

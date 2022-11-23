@@ -23,7 +23,7 @@
                         <button mat-button color="accent">Questions : {{ questionnaire.getNumberQuestions }}</button>
                         <button mat-button color="accent">Max Points : {{ questionnaire.getMaxPoints }}</button>
                         <br>
-                        <button mat-button class="btn-success mt10">Show</button>
+                        <button mat-button class="btn-success mt10" [routerLink]="'/user-dashboard/instructions/' + questionnaire.getId">Show</button>
                         <button mat-button class="btn-update">Start</button>
                     </mat-card-actions>
                 </mat-card>

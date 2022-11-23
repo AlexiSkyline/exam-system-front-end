@@ -19,6 +19,7 @@ import { ViewQuestionnaireQuestionsComponent } from './pages/admin/view-question
 import { AddQuestionComponent } from './pages/admin/add-question/add-question.component';
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 import { LoadQuestionnaireComponent } from './pages/user/load-questionnaire/load-questionnaire.component';
+import { InstructionsComponent } from './pages/user/instructions/instructions.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,10 @@ const routes: Routes = [
       {
         path: ':id',
         component: LoadQuestionnaireComponent
+      },
+      {
+        path: 'instructions/:id',
+        component: InstructionsComponent
       }
     ]
   }

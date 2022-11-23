@@ -1,0 +1,51 @@
+<div class="bootstrap-wrapper my20">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title class="mt20 text-center">
+                            Read the instructions on this page carefully
+                        </mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-subtitle class="ml30">One more step to go</mat-card-subtitle>
+
+                    <mat-card-content class="ml30">
+                        <h1>{{ questionnaire.getTitle }}</h1>
+                        <p>{{ questionnaire.getDescription }}</p>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <h1>Important instructions</h1>
+
+                        <ul>
+                            <li>This questionnaire is for practice purposes only</li>
+                            <li>You have to send the questionnaire to <b>{{ questionnaire.getNumberQuestions * 2 }} minutes</b></li>
+                            <li>You can try the questionnaire any number of times</li>
+                            <li>There is <b>{{ maxPoints /questionnaire.getNumberQuestions }} points per question</b></li>
+                        </ul>
+
+                        <mat-divider></mat-divider>
+                        <br>
+                        
+                        <h1>Test attempts</h1>
+                        
+                        <ul>
+                            <li>Press the button <b>Start</b> to start the questionnaire</li>
+                            <li>The time will start the moment you click on the start button./li>
+                            <li>You cannot resume this questionnaire if it is interrupted for any reason.</li>
+                            <li>Scroll down to go to the next question</li>
+                            <li>Click on the submit questionnaire button at the end of the questionnaire.</li>
+                            <li>The test report is automatically generated as a PDF copy.</li>
+                        </ul>
+                    </mat-card-content>
+                    <mat-card-actions class="text-center mb20">
+                        <button mat-raised-button color="primary">
+                            Start Questionnaire
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
