@@ -77,18 +77,14 @@ export class StartComponent implements OnInit {
     }
 
     private assessQuestions(): void {
-        this.isSent = true;
-        this.listQuestions.forEach(( questions: Question ) => {
-            if( questions.getAnswer == questions.getUserAnswer ) {
-                this.correctAnswers++;
-                const points = parseInt( this.listQuestions[0].getQuestionnaire.getMaxPoints ) / this.listQuestions.length;
-                this.pointsEarned += points;
-            }
-
-            if( questions.getUserAnswer.trim() == '' ) {
-                this.attempts++;
-            }
-        });
+        this.questionService.markQuestions( this.listQuestions ).pipe(
+            tap(( data: any ) => {
+                this.pointsEarned = data.maximumPoints;
+                this.correctAnswers = data.correctAnswers;
+                this.attempts = data.attempts;
+                this.isSent = true;
+            })
+        ).subscribe()
     }
 
     private startTimer():void {
@@ -106,5 +102,9 @@ export class StartComponent implements OnInit {
         const mm = Math.floor( this.timer / 60 );
         const ss = this.timer - mm * 60;
         return `${ mm }: ${ ss }`;
+    }
+
+    public printScreen(): void {
+        window.print();
     }
 }

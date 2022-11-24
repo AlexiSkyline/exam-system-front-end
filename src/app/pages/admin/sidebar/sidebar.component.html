@@ -19,7 +19,7 @@
         <button mat-list-item routerLink="/admin/add-questionnaire">
             <mat-icon mat-list-icon>add</mat-icon>Add Questionnaire
         </button>
-        <button mat-list-item>
+        <button mat-list-item (click)="logOut()">
             <mat-icon mat-list-icon>logout</mat-icon>Log out
         </button>
     </mat-action-list>

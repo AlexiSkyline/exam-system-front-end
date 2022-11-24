@@ -1,8 +1,17 @@
-<div class="bootstrap-wrapper" *ngIf = "!isSent">
+<div class="bootstrap-wrapper" *ngIf="!isSent">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-2">
-                <h3>Instructions</h3>
+                <mat-card style="margin-top: 70px;">
+                    <mat-card-content>
+                      <h3><b>Instructions</b></h3>
+                      <ul>
+                        <li>Do not refresh the page otherwise you will get new questions in this quiz</li>
+                        <li>Don't change the tabs</li>
+                        <li>Don't minimize the window</li>
+                      </ul>
+                    </mat-card-content>
+                  </mat-card>
             </div>
 
             <div class="col-md-7">
@@ -58,7 +67,7 @@
     </div>
 </div>
 
-<div class="bootstrap-wrapper" *ngIf = "isSent">
+<div class="bootstrap-wrapper" *ngIf="isSent">
     <div class="container mt20">
         <div class="col-md-6 offset-md-3">
             <mat-card>
@@ -74,10 +83,10 @@
                 </mat-card-content>
 
                 <mat-card-actions class="text-center mb20">
-                    <button mat-raised-button color="primary">Print</button>
-                    <button mat-raised-button color="accent" [routerLink] = "'/user-dashboard/0'">Home</button>
+                    <button mat-raised-button color="primary" (click)="printScreen()">Print</button>
+                    <button mat-raised-button color="accent" [routerLink]="'/user-dashboard/0'">Home</button>
                 </mat-card-actions>
             </mat-card>
         </div>
     </div>
-  </div>
+</div>

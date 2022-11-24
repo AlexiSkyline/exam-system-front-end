@@ -27,4 +27,8 @@ export class QuestionService {
     public getQuestionById( id: number ): Observable<Question> {
         return this.httpClient.get<Question>( `${ URL_SERVICE }/question/${ id }/` );
     }
+
+    public markQuestions( question: Question[] ): Observable<Question> {
+        return this.httpClient.post<Question>( `${ URL_SERVICE }/question/mark-exam/`, question );
+    }
 }

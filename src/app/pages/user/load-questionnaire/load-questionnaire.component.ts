@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 
 import { QuestionnaireService } from '../../../services/questionnaire.service';
@@ -15,7 +15,7 @@ import { Category } from '../../../models/Category';
 export class LoadQuestionnaireComponent implements OnInit {
     private idCategory: number = 0;
     public listQuestionnaire: Questionnaire[] = [];
-    constructor( private route: ActivatedRoute, private questionnaireService: QuestionnaireService ) {}
+    constructor( private route: ActivatedRoute, private questionnaireService: QuestionnaireService, private router: Router ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe(( params ) => {
@@ -36,6 +36,20 @@ export class LoadQuestionnaireComponent implements OnInit {
                         this.listQuestionnaire.push( new Questionnaire( questionnaire.id, questionnaire.title, questionnaire.description, 
                             questionnaire.maxPoints, questionnaire.numberQuestions, questionnaire.status, category  ) )} ))
                 ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
+            }
+        });
+    }
+
+    public start( idQuestionnaire: number ) {
+        Swal.fire({
+            title:'Do you want to start the Questionnaire?',
+            showCancelButton:true,
+            cancelButtonText:'Cancel',
+            confirmButtonText:'Start',
+            icon:'info'
+        }).then((result:any) => {
+            if( result.isConfirmed ){
+                this.router.navigate([ '/start/' + idQuestionnaire ]);
             }
         });
     }
