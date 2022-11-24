@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, CanActivate } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
 import { SignupComponent } from './pages/signup/signup.component';
@@ -20,6 +20,7 @@ import { AddQuestionComponent } from './pages/admin/add-question/add-question.co
 import { UpdateQuestionComponent } from './pages/admin/update-question/update-question.component';
 import { LoadQuestionnaireComponent } from './pages/user/load-questionnaire/load-questionnaire.component';
 import { InstructionsComponent } from './pages/user/instructions/instructions.component';
+import { StartComponent } from './pages/user/start/start.component';
 
 const routes: Routes = [
   {
@@ -97,6 +98,11 @@ const routes: Routes = [
         component: InstructionsComponent
       }
     ]
+  },
+  {
+    path: 'start/:id',
+    component: StartComponent,
+    canActivate: [ NormalGuard ]
   }
 ];
 

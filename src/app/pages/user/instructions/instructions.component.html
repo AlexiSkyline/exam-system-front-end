@@ -39,8 +39,9 @@
                             <li>The test report is automatically generated as a PDF copy.</li>
                         </ul>
                     </mat-card-content>
-                    <mat-card-actions class="text-center mb20">
-                        <button mat-raised-button color="primary">
+
+                    <mat-card-actions click class="text-center mb20">
+                        <button (click)="start()" mat-raised-button color="primary">
                             Start Questionnaire
                         </button>
                     </mat-card-actions>

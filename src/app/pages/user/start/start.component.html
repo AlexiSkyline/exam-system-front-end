@@ -1,0 +1,66 @@
+<div class="bootstrap-wrapper" *ngIf = "!isSent">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <h3>Instructions</h3>
+            </div>
+
+            <div class="col-md-8">
+                <ng-container *ngIf="listQuestions.length != 0 ">
+                    <h1 class="mt20">
+                        <b>{{ listQuestions[0].getQuestionnaire.getTitle }}</b> Ongoing
+                    </h1>
+                </ng-container>
+
+                <mat-card *ngFor="let questions of listQuestions;let i=index" class="mt20">
+                    <mat-card-content class="mt20 ml30 mb20">
+                        <p><b>{{ i + 1 }}.-  </b><span [innerHTML]="questions.getContent"></span></p>
+                        <mat-divider></mat-divider>
+                        <div class="row mt20">
+                            <div class="col-md-8 mt10">
+                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption1" name={{i}}> {{ questions.getOption1 }}
+                            </div>
+                            <div class="col-md-8 mt10">
+                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption2" name={{i}}> {{ questions.getOption2 }}
+                            </div>
+                            <div class="col-md-8 mt10">
+                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption3" name={{i}}> {{ questions.getOption3 }}
+                            </div>
+                            <div class="col-md-8 mt10">
+                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption4" name={{i}}> {{ questions.getOption4 }}
+                            </div>
+                        </div>
+                    </mat-card-content>
+                  </mat-card>
+
+                  <div class="container text-center mt20 mb20">
+                    <button (click)="sendQuestionnaire()" mat-raised-button color="primary">Send Questionnaire</button>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bootstrap-wrapper" *ngIf = "isSent">
+    <div class="container mt20">
+        <div class="col-md-6 offset-md-3">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title class="mt10">
+                        Test result
+                    </mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content class="text-center">
+                    <h1>Points Earned : {{ pointsEarned }}</h1>
+                    <h1>Correct Answers : {{ correctAnswers }}</h1>
+                </mat-card-content>
+
+                <mat-card-actions class="text-center mb20">
+                    <button mat-raised-button color="primary">Print</button>
+                    <button mat-raised-button color="accent" [routerLink] = "'/user-dashboard/0'">Home</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+  </div>

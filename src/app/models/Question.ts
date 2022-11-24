@@ -8,9 +8,10 @@ export class Question {
     private option3: string;
     private option4: string;
     private answer: string;
+    private userAnswer: string;
     private exam: Questionnaire;
 
-    constructor( id?: number, content?: string, image?: string, option1?: string, option2?: string, option3?: string, option4?: string, answer?: string, questionnaire?: Questionnaire ) {
+    constructor( id?: number, content?: string, image?: string, option1?: string, option2?: string, option3?: string, option4?: string, answer?: string, questionnaire?: Questionnaire, userAnswer?: string ) {
         this.id = id || 0;
         this.content = content || '';
         this.image = image || '';
@@ -20,6 +21,7 @@ export class Question {
         this.option4 = option4 || '';
         this.answer = answer || '';
         this.exam = questionnaire || new Questionnaire();
+        this.userAnswer = userAnswer || '';
     }
 
     public set setId( id: number ) {
@@ -76,6 +78,13 @@ export class Question {
     }
     public get getAnswer(): string {
         return this.answer;
+    }
+    
+    public set setUserAnswer( userAnswer: string ) {
+        this.userAnswer = userAnswer;
+    }
+    public get getUserAnswer(): string {
+        return this.userAnswer;
     }
 
     public set setQuestionnaire( questionnaire: Questionnaire ) {
