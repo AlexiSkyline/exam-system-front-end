@@ -5,7 +5,7 @@
                 <h3>Instructions</h3>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <ng-container *ngIf="listQuestions.length != 0 ">
                     <h1 class="mt20">
                         <b>{{ listQuestions[0].getQuestionnaire.getTitle }}</b> Ongoing
@@ -33,9 +33,26 @@
                     </mat-card-content>
                   </mat-card>
 
-                  <div class="container text-center mt20 mb20">
+                <div class="container text-center mt20 mb20">
                     <button (click)="sendQuestionnaire()" mat-raised-button color="primary">Send Questionnaire</button>
-                  </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <mat-card style="margin-top: 70px;">
+                    <mat-card-header class="mt10">
+                        <mat-card-title>Timer</mat-card-title>
+                    </mat-card-header>
+
+                    <mat-card-subtitle class="ml20">
+                        The questionnaire will be sent automatically when the timer reaches 0.
+                    </mat-card-subtitle>
+
+                    <mat-card-content class="mb20">
+                        <h1 class="text-center">{{ getFormattedTime() }}</h1>
+                        <mat-spinner mode="determinate" style="margin: auto;" [value]="( timer / ( listQuestions.length * 2 * 60 ) * 100 )"></mat-spinner>
+                    </mat-card-content>
+                </mat-card>
             </div>
         </div>
     </div>

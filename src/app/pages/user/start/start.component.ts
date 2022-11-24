@@ -21,6 +21,7 @@ export class StartComponent implements OnInit {
     public correctAnswers: number = 0;
     public attempts: number = 0;
     public isSent: boolean = false;
+    public timer: any;
     constructor( private locationStrategy: LocationStrategy, private route: ActivatedRoute, private questionService: QuestionService ) {}
 
     ngOnInit(): void {
@@ -40,9 +41,11 @@ export class StartComponent implements OnInit {
         this.questionService.getQuestionsByExamen( this.idQuestionnaire ).pipe(
             tap(( data: any ) =>{
                 this.buildQuestions( data );
+                this.timer = this.listQuestions.length * 2 * 60;
                 this.listQuestions.forEach(( question: Question ) => {
                     question.setUserAnswer = '';
                 });
+                this.startTimer();
             })
         ).subscribe();
     }
@@ -68,23 +71,40 @@ export class StartComponent implements OnInit {
             confirmButtonColor: '#d33',
         }).then(( e ) => {
             if( e.isConfirmed ){
-                this.isSent = true;
-                this.listQuestions.forEach(( questions: Question ) => {
-                    if( questions.getAnswer == questions.getUserAnswer ) {
-                        this.correctAnswers++;
-                        const points = parseInt( this.listQuestions[0].getQuestionnaire.getMaxPoints ) / this.listQuestions.length;
-                        this.pointsEarned += points;
-                    }
-
-                    if( questions.getUserAnswer.trim() == '' ) {
-                        this.attempts++;
-                    }
-                });
-
-                console.log( "Respuestas correctas:" + this.correctAnswers );
-                console.log( "Puntos obtenidos:" + this.pointsEarned );
-                console.log( this.listQuestions );
+                this.assessQuestions();
             }
         });
+    }
+
+    private assessQuestions(): void {
+        this.isSent = true;
+        this.listQuestions.forEach(( questions: Question ) => {
+            if( questions.getAnswer == questions.getUserAnswer ) {
+                this.correctAnswers++;
+                const points = parseInt( this.listQuestions[0].getQuestionnaire.getMaxPoints ) / this.listQuestions.length;
+                this.pointsEarned += points;
+            }
+
+            if( questions.getUserAnswer.trim() == '' ) {
+                this.attempts++;
+            }
+        });
+    }
+
+    private startTimer():void {
+        const time = window.setInterval(() => {
+            if( this.timer <= 0 ) {
+                this.assessQuestions();
+                clearInterval( time );
+            } else { 
+                this.timer--;
+            }
+        }, 1000);
+    }
+
+    public getFormattedTime(): string {
+        const mm = Math.floor( this.timer / 60 );
+        const ss = this.timer - mm * 60;
+        return `${ mm }: ${ ss }`;
     }
 }
