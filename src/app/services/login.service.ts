@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import URL_SERVICE from './helper';
 
 import { Login } from '../models/Login';
 import { User } from '../models/User';
 import { Role } from '../models/Role';
+import { LoginResponse } from '../models/LoginResponse';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
     public loginStatusSubject = new Subject<boolean>();
     constructor( private httpClient: HttpClient ) {}
     
-    public login( login: Login ) {
-        return this.httpClient.post( `${ URL_SERVICE }/login`, login );
+    public login( login: Login ): Observable<LoginResponse> {
+        return this.httpClient.post<LoginResponse>( `${ URL_SERVICE }/login`, login );
     }
 
-    public loginUser( token: any ): void {
+    public loginUser( token: string ): void {
         localStorage.setItem( 'token', token );
     }
 

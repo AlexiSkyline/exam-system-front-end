@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Login } from 'src/app/models/Login';
 import { LoginService } from '../../services/login.service';
+import { LoginResponse, LoginResponseException } from '../../models/LoginResponse';
 
 @Component({
   selector: 'app-login',
@@ -17,36 +18,40 @@ export class LoginComponent implements OnInit {
     ngOnInit(): void {}
 
     formSubmit() {
-        if( this.login.getUsername.trim() === '' || this.login.getUsername.trim === null ) {
-            this.snack.open( 'The Username is required', 'Ok', {
-                duration: 3000
-            });
-            return;
-        }
-
-        if( this.login.getPassword.trim() === '' || this.login.getPassword.trim === null ) {
-            this.snack.open( 'The Password is required', 'Ok', {
-                duration: 3000
-            });
-            return;
-        }
-
+        if( !this.isValidForm() ) return;
+        
         this.loginService.login( this.login ).subscribe({
-            next: ( data: any ) => {
-                this.loginService.loginUser( data.token );
-                this.loginService.getCurrentUser().subscribe({
-                    next: ( user: any ) => {
-                        this.loginService.setUser( user );
-                        this.redirectUser( this.loginService.getUserRole().getName );
-                    }
-                });
+            next: ( loginResponse: LoginResponse ) => {
+                this.loginService.loginUser( loginResponse.data.accessToken );
+                this.loginService.setUser( loginResponse.data.user );
+                this.redirectUser( this.loginService.getUserRole().getName );
             },
-            error: ( error ) => {
-                this.snack.open( 'The data are incorrect, please try again', 'Ok', {
+            error: ( error: any ) => {
+                const message = this.getMessageError( error );
+
+                this.snack.open( message, 'Ok', {
                     duration: 3000
                 });
             }
         });
+    }
+
+    private isValidForm(): boolean {
+        if( this.login.username?.trim() === '' || typeof this.login.username === 'undefined' ) {
+            this.snack.open( 'The Username is required', 'Ok', {
+                duration: 3000
+            });
+            return false;
+        }
+
+        if( this.login.password?.trim() === '' || typeof this.login.password === 'undefined' ) {
+            this.snack.open( 'The Password is required', 'Ok', {
+                duration: 3000
+            });
+            return false;
+        }
+
+        return true;
     }
 
     private redirectUser( typeRole: string ): void {
@@ -60,5 +65,19 @@ export class LoginComponent implements OnInit {
             this.loginService.logOut();
             this.loginService.loginStatusSubject.next( false );
         }
+    }
+
+    private getMessageError( error: any ): string {
+        let message = '';
+        const loginResponseException: LoginResponseException = error.error;
+
+        if( Array.isArray( loginResponseException.information ) ) {
+            message = loginResponseException.information[0].message;
+        } else if( !Array.isArray( loginResponseException.information ) && loginResponseException.information ) {
+            message = loginResponseException.information.message;
+        } else {
+            message = error.error.message;
+        }
+        return message;
     }
 }

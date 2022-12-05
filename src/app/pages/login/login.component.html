@@ -11,7 +11,7 @@
                         <form (ngSubmit)="formSubmit()">
                             <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Username</mat-label>
-                                <input required [(ngModel)]="login.setUsername" name="username" matInput placeholder="Enter your Username" #username="ngModel">
+                                <input required [(ngModel)]="login.username" name="username" matInput placeholder="Enter your Username" #username="ngModel">
     
                                 <mat-error *ngIf="username.invalid && ( username.dirty || username.touched )">
                                     <mat-error *ngIf="username.errors?.['required']">
@@ -22,7 +22,7 @@
 
                             <mat-form-field class="full-width" appearance="outline">
                                 <mat-label>Password</mat-label>
-                                <input required [(ngModel)]="login.setPassword" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel">
+                                <input required [(ngModel)]="login.password" name="password" type="password" matInput placeholder="Enter your Password" #password="ngModel">
     
                                 <mat-error *ngIf="password.invalid && ( password.dirty || password.touched )">
                                     <mat-error *ngIf="password.errors?.['required']">
