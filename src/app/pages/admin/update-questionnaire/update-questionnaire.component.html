@@ -36,8 +36,8 @@
                 <mat-form-field appearance="fill" class="mt20 w100">
                     <mat-label>Category</mat-label>
                     <mat-select name="category" [(ngModel)]="idCategory" [(value)]="this.idCategory">
-                        <mat-option *ngFor = "let category of listCategory" [value] = "category.getId">
-                            {{ category.getTitle }}
+                        <mat-option *ngFor = "let category of listCategory" [value] = "category.id">
+                            {{ category.title }}
                         </mat-option>
                     </mat-select>
                 </mat-form-field>

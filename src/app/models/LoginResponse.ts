@@ -6,7 +6,7 @@ export interface LoginResponse {
     httpStatus: string,
     message: string,
     data: {
-        user: User,
+        userDetails: User,
         accessToken: string
     }
 }

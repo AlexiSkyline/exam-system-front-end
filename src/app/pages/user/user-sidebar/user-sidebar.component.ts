@@ -3,6 +3,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { Category } from '../../../models/Category';
 import Swal from 'sweetalert2';
 import { tap } from 'rxjs';
+import { ResponseBody } from '../../../models/ResponseBody';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -14,8 +15,8 @@ export class UserSidebarComponent implements OnInit {
     constructor( private categoryService: CategoryService ) { }
 
     ngOnInit(): void {
-        this.categoryService.getCategories().pipe(
-            tap(( data ) => data.forEach(( category: any )=> this.listCategory.push( new Category( category.id, category.title, category.description ) ) ))
-        ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading categories', 'error' ) });
+        this.categoryService.getCategories()
+        .pipe( tap(( response: ResponseBody<Category[]> ) => this.listCategory = response.data as Category[] ) )
+        .subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading categories', 'error' ) });
     }
 }

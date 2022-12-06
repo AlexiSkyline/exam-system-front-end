@@ -5,8 +5,8 @@
             <mat-icon mat-list-icon>quiz</mat-icon>Questionnaires
         </button>
 
-        <button [routerLink]="'/user-dashboard/'+ category.getId" mat-list-item *ngFor="let category of listCategory">
-            <mat-icon mat-list-icon>category</mat-icon>{{ category.getTitle }}
+        <button [routerLink]="'/user-dashboard/'+ category.id" mat-list-item *ngFor="let category of listCategory">
+            <mat-icon mat-list-icon>category</mat-icon>{{ category.title }}
         </button>
     </mat-action-list>
 </mat-card>

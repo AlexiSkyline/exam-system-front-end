@@ -9,6 +9,7 @@ import { Questionnaire } from '../../../models/Questionnaire';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { CategoryService } from '../../../services/category.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ResponseBody } from '../../../models/ResponseBody';
 
 @Component({
   selector: 'app-update-questionnaire',
@@ -31,13 +32,13 @@ export class UpdateQuestionnaireComponent implements OnInit {
             }),
         ).subscribe();
 
-        this.categoryService.getCategories().pipe(
-            tap(( data ) => data.forEach(( category: any )=> this.listCategory.push( new Category( category.id, category.title, category.description ) ) ))
-        ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading categories', 'error' ) });
+        this.categoryService.getCategories()
+        .pipe( tap(( response: ResponseBody<Category[]> ) => this.listCategory = response.data as Category[] ) )
+        .subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading categories', 'error' ) });
     }
 
     public updateData(): void {
-        const category = this.listCategory.filter( category => category.getId === this.idCategory );
+        const category = this.listCategory.filter( category => category.id === this.idCategory );
         this.questionnaire.setCategory = category[0];
         const errorMessage = this.questionnaire.validateFields();
         if( errorMessage !== '' ) {

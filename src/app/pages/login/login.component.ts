@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
         this.loginService.login( this.login ).subscribe({
             next: ( loginResponse: LoginResponse ) => {
                 this.loginService.loginUser( loginResponse.data.accessToken );
-                this.loginService.setUser( loginResponse.data.user );
+                this.loginService.setUser( loginResponse.data.userDetails );
                 this.redirectUser( this.loginService.getUserRole().getName );
             },
             error: ( error: any ) => {

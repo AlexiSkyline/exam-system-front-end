@@ -85,7 +85,7 @@ export class Questionnaire {
             return 'The Questionnaire Number Questions is required!!';
         }
 
-        if( this.category.getId === 0 || this.numberQuestions === null ) {
+        if( this.category.id === 0 || this.numberQuestions === null ) {
             return 'The Questionnaire Category is required!!';
         }
 

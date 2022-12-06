@@ -1,4 +1,4 @@
 export class Login {
-    username?: String;
-    password?: String;
+    public username?: String;
+    public password?: String;
 }
