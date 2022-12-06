@@ -43,7 +43,7 @@ export class StartComponent implements OnInit {
                 this.buildQuestions( data );
                 this.timer = this.listQuestions.length * 2 * 60;
                 this.listQuestions.forEach(( question: Question ) => {
-                    question.setUserAnswer = '';
+                    question.userAnswer = '';
                 });
                 this.startTimer();
             })

@@ -7,6 +7,8 @@ import { tap } from 'rxjs';
 import Swal from 'sweetalert2';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { Questionnaire } from 'src/app/models/Questionnaire';
+import { ResponseBody } from '../../../models/ResponseBody';
+import { getMessageError } from '../../../models/ResponseException';
 
 @Component({
   selector: 'app-add-question',
@@ -23,18 +25,15 @@ export class AddQuestionComponent implements OnInit {
     ngOnInit(): void {
         this.idQuestionnaire = this.route.snapshot.params[ 'id' ];
         this.title = this.route.snapshot.params[ 'title' ];
-        this.question.getQuestionnaire.id = this.idQuestionnaire;
+        this.question.questionnaire.id = this.idQuestionnaire;
 
-        this.questionnaireService.getQuestionnaireById( this.idQuestionnaire ).pipe(
-            tap(( data: any ) => {
-                this.question.setQuestionnaire = new Questionnaire( data.id, data.title, data.description, data.maxPoints, data.status, data.numberQuestions, data.category )
-                console.log( this.question );
-            })
-        ).subscribe();
+        this.questionnaireService.getQuestionnaireById( this.idQuestionnaire )
+        .pipe( tap(( response: ResponseBody<Questionnaire> ) => this.question.questionnaire = response.data as Questionnaire ))
+        .subscribe();
     }
 
     public onSubmit(): void {
-        const errorMessage = this.question.validateFields();
+        const errorMessage = Question.validateFields( this.question );
         if( errorMessage !== '' ) {
             this.snack.open( errorMessage,  'Ok', {
                 duration: 3000
@@ -42,15 +41,14 @@ export class AddQuestionComponent implements OnInit {
             return;
         }
 
-        this.questionService.saveQuestions( this.question ).subscribe({
-            next: () => {
-                Swal.fire( 'Question added', 'Question successfully added', 'success' );
-            },
-            error: () => {
-                Swal.fire( 'Error', 'Error when saving the Question', 'error' );
-            }
-        });
-
-        this.router.navigate([ `/admin/view-questions/${ this.idQuestionnaire }/${ this.title }` ]);
+        this.questionService.saveQuestions( this.question )
+        .pipe( tap(( response: ResponseBody<Question> ) => {
+            Swal.fire( 'Question Updated', response.message, 'success' );
+            this.router.navigate([ `/admin/view-questions/${ this.idQuestionnaire }/${ this.title }` ]);
+        }))
+        .subscribe({ error: ( response: any ) => {
+            const message = getMessageError( response );
+            Swal.fire( 'Error',  message, 'error' )
+        }});
     }
 }

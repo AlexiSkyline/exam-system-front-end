@@ -17,26 +17,26 @@
             <div class="col-md-7">
                 <ng-container *ngIf="listQuestions.length != 0 ">
                     <h1 class="mt20">
-                        <b>{{ listQuestions[0].getQuestionnaire.title }}</b> Ongoing
+                        <b>{{ listQuestions[0].questionnaire.title }}</b> Ongoing
                     </h1>
                 </ng-container>
 
                 <mat-card *ngFor="let questions of listQuestions;let i=index" class="mt20">
                     <mat-card-content class="mt20 ml30 mb20">
-                        <p><b>{{ i + 1 }}.-  </b><span [innerHTML]="questions.getContent"></span></p>
+                        <p><b>{{ i + 1 }}.-  </b><span [innerHTML]="questions.content"></span></p>
                         <mat-divider></mat-divider>
                         <div class="row mt20">
                             <div class="col-md-8 mt10">
-                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption1" name={{i}}> {{ questions.getOption1 }}
+                                <input [(ngModel)]="questions.userAnswer" type="radio" [value]="questions.option1" name={{i}}> {{ questions.option1 }}
                             </div>
                             <div class="col-md-8 mt10">
-                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption2" name={{i}}> {{ questions.getOption2 }}
+                                <input [(ngModel)]="questions.userAnswer" type="radio" [value]="questions.option2" name={{i}}> {{ questions.option2 }}
                             </div>
                             <div class="col-md-8 mt10">
-                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption3" name={{i}}> {{ questions.getOption3 }}
+                                <input [(ngModel)]="questions.userAnswer" type="radio" [value]="questions.option3" name={{i}}> {{ questions.option3 }}
                             </div>
                             <div class="col-md-8 mt10">
-                                <input [(ngModel)]="questions.setUserAnswer" type="radio" [value]="questions.getOption4" name={{i}}> {{ questions.getOption4 }}
+                                <input [(ngModel)]="questions.userAnswer" type="radio" [value]="questions.option4" name={{i}}> {{ questions.option4 }}
                             </div>
                         </div>
                     </mat-card-content>
