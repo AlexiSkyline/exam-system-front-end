@@ -10,10 +10,3 @@ export interface LoginResponse {
         accessToken: string
     }
 }
-
-export interface LoginResponseException {
-    timeStamp: string;
-    httpCode: number;
-    httpStatus: string;
-    information: any;
-}

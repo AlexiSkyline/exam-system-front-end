@@ -30,8 +30,8 @@ export class AddQuestionnaireComponent implements OnInit {
 
     public onSubmit(): void {
         const category = this.listCategory.filter( category => category.id === this.idCategory );
-        this.questionnaire.setCategory = category[0];
-        const errorMessage = this.questionnaire.validateFields();
+        this.questionnaire.category = category[0];
+        const errorMessage = Questionnaire.validateFields( this.questionnaire );
         if( errorMessage !== '' ) {
             this.snack.open( errorMessage,  'Ok', {
                 duration: 3000
@@ -39,14 +39,11 @@ export class AddQuestionnaireComponent implements OnInit {
             return;
         }
     
-        this.questionnaireService.saveQuestionnaires( this.questionnaire ).subscribe({
-            next: () => {
-                Swal.fire( 'Questionnaire added', 'Questionnaire successfully added', 'success' );
-                this.router.navigate([ '/admin/questionnaires' ]);
-            },
-            error: () => {
-                Swal.fire( 'Error', 'Error when saving the Questionnaire', 'error' );
-            }
-        });        
+        this.questionnaireService.saveQuestionnaires( this.questionnaire )
+        .pipe( tap(( response: ResponseBody<Questionnaire> ) => {
+            Swal.fire( 'Questionnaire added', response.message, 'success' );
+            this.router.navigate([ '/admin/questionnaires' ]);
+        }) )
+        .subscribe({ error: () => Swal.fire( 'Error', 'Error when saving the Questionnaire', 'error' )});        
     }
 }

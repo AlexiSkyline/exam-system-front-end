@@ -4,6 +4,7 @@ import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { Questionnaire } from '../../../models/Questionnaire';
 import { tap } from 'rxjs';
 import { Category } from '../../../models/Category';
+import { ResponseBody } from '../../../models/ResponseBody';
 
 @Component({
   selector: 'app-view-questionnaires',
@@ -15,12 +16,9 @@ export class ViewQuestionnairesComponent implements OnInit {
     constructor( private questionnaireService: QuestionnaireService ) {}
 
     ngOnInit(): void {
-        this.questionnaireService.getQuestionnaires().pipe(
-            tap(( data ) => data.forEach(( questionnaire: any ) =>{
-                const category = new Category( questionnaire.category.id, questionnaire.category.title, questionnaire.category.description  );
-                this.listQuestionnaire.push( new Questionnaire( questionnaire.id, questionnaire.title, questionnaire.description, 
-                    questionnaire.maxPoints, questionnaire.numberQuestions, questionnaire.status, category  ) )} ))
-        ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
+        this.questionnaireService.getQuestionnaires()
+        .pipe( tap(( response: ResponseBody<Questionnaire[]> ) => this.listQuestionnaire = response.data as Questionnaire[] ))
+        .subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
     }
 
     public deleteQuestionnaire( id: number ): void {
@@ -37,7 +35,7 @@ export class ViewQuestionnairesComponent implements OnInit {
             if( result.isConfirmed ){
                 this.questionnaireService.deleteQuestionnaires( id ).subscribe({
                     next: () => {
-                        this.listQuestionnaire = this.listQuestionnaire.filter(( questionnaire: Questionnaire ) => questionnaire.getId !== id );
+                        this.listQuestionnaire = this.listQuestionnaire.filter(( questionnaire: Questionnaire ) => questionnaire.id !== id );
                         Swal.fire( 'Questionnaire eliminated', 'The Questionnaire has been removed from the database.', 'success' );
                     },
                     error: () => {

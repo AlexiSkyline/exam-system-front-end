@@ -12,17 +12,17 @@
                     <mat-card-subtitle class="ml30">One more step to go</mat-card-subtitle>
 
                     <mat-card-content class="ml30">
-                        <h1>{{ questionnaire.getTitle }}</h1>
-                        <p>{{ questionnaire.getDescription }}</p>
+                        <h1>{{ questionnaire.title }}</h1>
+                        <p>{{ questionnaire.description }}</p>
                         <mat-divider></mat-divider>
                         <br>
                         <h1>Important instructions</h1>
 
                         <ul>
                             <li>This questionnaire is for practice purposes only</li>
-                            <li>You have to send the questionnaire to <b>{{ questionnaire.getNumberQuestions * 2 }} minutes</b></li>
+                            <li>You have to send the questionnaire to <b>{{ questionnaire.numberQuestions * 2 }} minutes</b></li>
                             <li>You can try the questionnaire any number of times</li>
-                            <li>There is <b>{{ maxPoints /questionnaire.getNumberQuestions }} points per question</b></li>
+                            <li>There is <b>{{ maxPoints /questionnaire.numberQuestions }} points per question</b></li>
                         </ul>
 
                         <mat-divider></mat-divider>

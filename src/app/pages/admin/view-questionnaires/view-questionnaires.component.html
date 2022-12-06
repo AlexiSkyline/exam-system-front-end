@@ -2,24 +2,24 @@
     <mat-card-header class="p10">
         <div mat-card-avatar class="example-header-image"></div>
             <mat-card-title>
-                {{ questionnaire.getTitle }}
+                {{ questionnaire.title }}
             </mat-card-title>
 
             <mat-card-subtitle class="mt10">
-                <b>Description:</b> {{ questionnaire.getDescription }}
+                <b>Description:</b> {{ questionnaire.description }}
                 <br>
-                <b>Category:</b> {{ questionnaire.getCategory.title }}
+                <b>Category:</b> {{ questionnaire.category.title }}
             </mat-card-subtitle>
     </mat-card-header>
     
     <mat-card-content>
         <mat-card-actions class="ml10">
-            <button [routerLink]="'/admin/view-questions/' + questionnaire.getId + '/' + questionnaire.getTitle" routerLinkActive="router-link-active"  mat-flat-button color="primary">Questions</button>
-            <button mat-stroked-button color="primary" class="ml20">Max Points {{ questionnaire.getMaxPoints }}</button>
-            <button mat-stroked-button color="primary" class="ml20">Questions {{ questionnaire.getNumberQuestions }}</button>
-            <button [routerLink]="'/admin/questionnaire/' + questionnaire.getId" mat-flat-button class="ml20 btn-update">Update</button>
+            <button [routerLink]="'/admin/view-questions/' + questionnaire.id + '/' + questionnaire.title" routerLinkActive="router-link-active"  mat-flat-button color="primary">Questions</button>
+            <button mat-stroked-button color="primary" class="ml20">Max Points {{ questionnaire.maxPoints }}</button>
+            <button mat-stroked-button color="primary" class="ml20">Questions {{ questionnaire.numberQuestions }}</button>
+            <button [routerLink]="'/admin/questionnaire/' + questionnaire.id" mat-flat-button class="ml20 btn-update">Update</button>
             <button mat-flat-button color="primary" class="ml20">Tentative</button>
-            <button mat-flat-button color="warn" class="ml10" (click) = "deleteQuestionnaire( questionnaire.getId )">Delete</button>
+            <button mat-flat-button color="warn" class="ml10" (click) = "deleteQuestionnaire( questionnaire.id )">Delete</button>
         </mat-card-actions>
     </mat-card-content>
 </mat-card>

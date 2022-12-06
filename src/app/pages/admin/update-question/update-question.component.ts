@@ -40,7 +40,7 @@ export class UpdateQuestionComponent implements OnInit {
 
         this.questionService.updateQuestion( this.question ).subscribe({
             next: () => Swal.fire( 'Question Updated', 'Question successfully updated', 'success' ).then(() => { 
-                this.router.navigate([ `/admin/view-questions/${ this.question.getQuestionnaire.getId }/${ this.question.getQuestionnaire.getTitle }` ] )
+                this.router.navigate([ `/admin/view-questions/${ this.question.getQuestionnaire.id }/${ this.question.getQuestionnaire.title }` ] )
             })
             ,error: () => Swal.fire( 'Error', 'Error when updating the Question', 'error' )
         });

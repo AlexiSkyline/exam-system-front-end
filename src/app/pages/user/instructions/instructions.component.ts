@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { Category } from 'src/app/models/Category';
 import Swal from 'sweetalert2';
+import { ResponseBody } from '../../../models/ResponseBody';
 
 @Component({
   selector: 'app-instructions',
@@ -19,7 +20,8 @@ export class InstructionsComponent implements OnInit {
 
     ngOnInit(): void {
         this.idQuestionnaire = this.route.snapshot.params[ 'id' ];
-        this.questionnaireService.getQuestionnaireById( this.idQuestionnaire ).pipe( tap(( data: any ) => this.buildQuestionnaire( data ))).subscribe();
+        this.questionnaireService.getQuestionnaireById( this.idQuestionnaire )
+        .pipe( tap(( response: ResponseBody<Questionnaire> ) => this.questionnaire = response.data as Questionnaire )).subscribe();
     }
 
     public start() {
@@ -34,16 +36,5 @@ export class InstructionsComponent implements OnInit {
                 this.router.navigate([ '/start/' + this.idQuestionnaire ]);
             }
         });
-    }
-
-    private buildQuestionnaire( data: any ): void {
-        this.questionnaire.setId = data.id;
-        this.questionnaire.setTitle = data.title;
-        this.questionnaire.setDescription = data.description;
-        this.questionnaire.setMaxPoints = data.maxPoints;
-        this.questionnaire.setNumberQuestions = data.numberQuestions;
-        this.questionnaire.setStatus = data.status;
-        this.questionnaire.setCategory = new Category( data.category.id, data.category.title, data.category.description  );
-        this.maxPoints = data.maxPoints != '' ? data.maxPoints : 0;
     }
 }

@@ -5,31 +5,31 @@
             <form (ngSubmit)="onSubmit()">
                 <mat-form-field class="w100" appearance="fill">
                     <mat-label>Title</mat-label>
-                    <input required type="text" name="title" placeholder="Title Questionnaire" matInput [(ngModel)]="questionnaire.setTitle">
+                    <input required type="text" name="title" placeholder="Title Questionnaire" matInput [(ngModel)]="questionnaire.title">
                 </mat-form-field>
 
                 <mat-form-field class="w100" appearance="fill">
                     <mat-label>Description</mat-label>
-                    <textarea required name="description" placeholder="Description Questionnaire" matInput rows="8" [(ngModel)]="questionnaire.setDescription"></textarea>
+                    <textarea required name="description" placeholder="Description Questionnaire" matInput rows="8" [(ngModel)]="questionnaire.description"></textarea>
                 </mat-form-field>
 
                 <div class="row">
                     <div class="col-md-6">
                         <mat-form-field class="w100" appearance="fill">
                           <mat-label>Max Points</mat-label>
-                          <input required type="text" name="maxPoints" placeholder="Max Points Questionnaire" matInput [(ngModel)]="questionnaire.setMaxPoints">
+                          <input required type="text" name="maxPoints" placeholder="Max Points Questionnaire" matInput [(ngModel)]="questionnaire.maxPoints">
                         </mat-form-field>
                       </div>
 
                       <div class="col-md-6">
                         <mat-form-field class="w100" appearance="fill">
                           <mat-label>Number Questions</mat-label>
-                          <input required type="text" name="numberQuestions" placeholder="Number Questions Questionnaire" matInput [(ngModel)]="questionnaire.setNumberQuestions">
+                          <input required type="text" name="numberQuestions" placeholder="Number Questions Questionnaire" matInput [(ngModel)]="questionnaire.numberQuestions">
                         </mat-form-field>
                       </div>
                 </div>
 
-                <mat-slide-toggle required class="mt20" name="status" [checked]="false" color="primary" [(ngModel)]="questionnaire.setStatus">
+                <mat-slide-toggle required class="mt20" name="status" [checked]="false" color="primary" [(ngModel)]="questionnaire.status">
                     Publication Status
                 </mat-slide-toggle>
 

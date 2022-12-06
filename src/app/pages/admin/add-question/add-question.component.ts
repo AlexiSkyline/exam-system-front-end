@@ -23,7 +23,7 @@ export class AddQuestionComponent implements OnInit {
     ngOnInit(): void {
         this.idQuestionnaire = this.route.snapshot.params[ 'id' ];
         this.title = this.route.snapshot.params[ 'title' ];
-        this.question.getQuestionnaire.setId = this.idQuestionnaire;
+        this.question.getQuestionnaire.id = this.idQuestionnaire;
 
         this.questionnaireService.getQuestionnaireById( this.idQuestionnaire ).pipe(
             tap(( data: any ) => {

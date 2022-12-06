@@ -3,40 +3,41 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Questionnaire } from '../models/Questionnaire';
 import URL_SERVICE from './helper';
+import { ResponseBody } from '../models/ResponseBody';
 
 @Injectable({ providedIn: 'root' })
 export class QuestionnaireService {
     constructor( private httpClient: HttpClient ) {}
 
-    public getQuestionnaires(): Observable<Questionnaire[]> {
-        return this.httpClient.get<Questionnaire[]>( `${ URL_SERVICE }/exam/` );
+    public getQuestionnaires(): Observable<ResponseBody<Questionnaire[]>> {
+        return this.httpClient.get<ResponseBody<Questionnaire[]>>( `${ URL_SERVICE }/questionnaire/` );
     }
 
-    public saveQuestionnaires( questionnaire: Questionnaire ){
-        return this.httpClient.post( `${ URL_SERVICE }/exam/`, questionnaire );
+    public saveQuestionnaires( questionnaire: Questionnaire ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.post<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/`, questionnaire );
     }
 
-    public deleteQuestionnaires( id: number ) {
-        return this.httpClient.delete( `${ URL_SERVICE }/exam/${ id }/` );
+    public deleteQuestionnaires( id: number ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.delete<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/${ id }/` );
     }
 
-    public getQuestionnaireById( id: Number ): Observable<Questionnaire> {
-        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/${ id }/` );
+    public getQuestionnaireById( id: Number ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/${ id }/` );
     }
 
-    public updateQuestionnaire( questionnaire: Questionnaire ): Observable<Questionnaire> {
-        return this.httpClient.put<Questionnaire>( `${ URL_SERVICE }/exam/`, questionnaire );
+    public updateQuestionnaire( questionnaire: Questionnaire ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.put<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/`, questionnaire );
     }
 
-    public getAllQuestionnairesByCategory( id: number ){
-        return this.httpClient.get( `${ URL_SERVICE }/exam/category/${ id }` );
+    public getAllQuestionnairesByCategory( id: number ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/category/${ id }` );
     }
 
-    public getAllQuestionnairesActives(): Observable<Questionnaire> {
-        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/active`);
+    public getAllQuestionnairesActives(): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/active`);
     }
 
-    public getAllQuestionnairesActivesByCategory( id: number ): Observable<Questionnaire> {
-        return this.httpClient.get<Questionnaire>( `${ URL_SERVICE }/exam/category/active/${ id }` );
+    public getAllQuestionnairesActivesByCategory( id: number ): Observable<ResponseBody<Questionnaire>> {
+        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/category/active/${ id }` );
     }
 }

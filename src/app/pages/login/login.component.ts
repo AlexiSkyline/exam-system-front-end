@@ -4,7 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { Login } from 'src/app/models/Login';
 import { LoginService } from '../../services/login.service';
-import { LoginResponse, LoginResponseException } from '../../models/LoginResponse';
+import { LoginResponse } from '../../models/LoginResponse';
+import { getMessageError } from '../../models/ResponseException';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { LoginResponse, LoginResponseException } from '../../models/LoginRespons
 })
 export class LoginComponent implements OnInit {
     public login: Login = new Login;
-    constructor( private snack: MatSnackBar, private loginService: LoginService, private router: Router ) { }
+    constructor( private snack: MatSnackBar, private loginService: LoginService, private router: Router ) {}
 
     ngOnInit(): void {}
 
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
                 this.redirectUser( this.loginService.getUserRole().getName );
             },
             error: ( error: any ) => {
-                const message = this.getMessageError( error );
+                const message = getMessageError( error );
 
                 this.snack.open( message, 'Ok', {
                     duration: 3000
@@ -65,19 +66,5 @@ export class LoginComponent implements OnInit {
             this.loginService.logOut();
             this.loginService.loginStatusSubject.next( false );
         }
-    }
-
-    private getMessageError( error: any ): string {
-        let message = '';
-        const loginResponseException: LoginResponseException = error.error;
-
-        if( Array.isArray( loginResponseException.information ) ) {
-            message = loginResponseException.information[0].message;
-        } else if( !Array.isArray( loginResponseException.information ) && loginResponseException.information ) {
-            message = loginResponseException.information.message;
-        } else {
-            message = error.error.message;
-        }
-        return message;
     }
 }
