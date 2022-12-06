@@ -8,6 +8,7 @@ import { Question } from '../../../models/Question';
 import { Category } from '../../../models/Category';
 import { QuestionService } from '../../../services/question.service';
 import { Questionnaire } from '../../../models/Questionnaire';
+import { ResponseBody } from 'src/app/models/ResponseBody';
 
 @Component({
   selector: 'app-start',
@@ -39,8 +40,8 @@ export class StartComponent implements OnInit {
 
     private loadQuestions() {
         this.questionService.getQuestionsByExamen( this.idQuestionnaire ).pipe(
-            tap(( data: any ) =>{
-                this.buildQuestions( data );
+            tap(( response: ResponseBody<Question[]> ) =>{
+                this.listQuestions = response.data as Question[];
                 this.timer = this.listQuestions.length * 2 * 60;
                 this.listQuestions.forEach(( question: Question ) => {
                     question.userAnswer = '';
@@ -48,16 +49,6 @@ export class StartComponent implements OnInit {
                 this.startTimer();
             })
         ).subscribe();
-    }
-
-    private buildQuestions( data: any ): void {
-        data.forEach(( question: any ) => {
-            const currentCategory = new Category( question.exam.category.id, question.exam.category.title, question.exam.category.description );
-            const currentQuestionnaire = new Questionnaire( question.exam.id, question.exam.title, question.exam.description, question.exam.maxPoints, question.exam.numberQuestions,
-                question.exam.status, currentCategory );
-            this.listQuestions.push( new Question( question.id, question.content, question.image, question.option1, question.option2, question.option3, question.option4,
-                question.answer, currentQuestionnaire ) );
-        });
     }
 
     public sendQuestionnaire(): void {
@@ -78,10 +69,10 @@ export class StartComponent implements OnInit {
 
     private assessQuestions(): void {
         this.questionService.markQuestions( this.listQuestions ).pipe(
-            tap(( data: any ) => {
-                this.pointsEarned = data.maximumPoints;
-                this.correctAnswers = data.correctAnswers;
-                this.attempts = data.attempts;
+            tap(( response: any ) => {
+                this.pointsEarned = response.data.maximumPoints;
+                this.correctAnswers = response.data.correctAnswers;
+                this.attempts = response.data.attempts;
                 this.isSent = true;
             })
         ).subscribe()

@@ -33,11 +33,11 @@ export class QuestionnaireService {
         return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/category/${ id }` );
     }
 
-    public getAllQuestionnairesActives(): Observable<ResponseBody<Questionnaire>> {
-        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/active`);
+    public getAllQuestionnairesActives(): Observable<ResponseBody<Questionnaire[]>> {
+        return this.httpClient.get<ResponseBody<Questionnaire[]>>( `${ URL_SERVICE }/questionnaire/active`);
     }
 
-    public getAllQuestionnairesActivesByCategory( id: number ): Observable<ResponseBody<Questionnaire>> {
-        return this.httpClient.get<ResponseBody<Questionnaire>>( `${ URL_SERVICE }/questionnaire/category/active/${ id }` );
+    public getAllQuestionnairesActivesByCategory( id: number ): Observable<ResponseBody<Questionnaire[]>> {
+        return this.httpClient.get<ResponseBody<Questionnaire[]>>( `${ URL_SERVICE }/questionnaire/category/active/${ id }` );
     }
 }

@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
             },
             error: ( error: any ) => {
                 const message = getMessageError( error );
-
                 this.snack.open( message, 'Ok', {
                     duration: 3000
                 });
@@ -59,7 +58,7 @@ export class LoginComponent implements OnInit {
         if( typeRole == 'ROLE_ADMIN' ) {
             this.router.navigate([ '/admin' ]);
             this.loginService.loginStatusSubject.next( true );
-        } else if( typeRole == 'ROLE_NORMAL' ) {
+        } else if( typeRole == 'ROLE_USER' ) {
             this.router.navigate([ '/user-dashboard/0' ]);
             this.loginService.loginStatusSubject.next( true );
         } else {

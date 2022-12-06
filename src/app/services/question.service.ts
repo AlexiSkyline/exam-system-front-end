@@ -29,7 +29,7 @@ export class QuestionService {
         return this.httpClient.get<ResponseBody<Question>>( `${ URL_SERVICE }/question/${ id }/` );
     }
 
-    public markQuestions( question: Question[] ): Observable<ResponseBody<Question>> {
-        return this.httpClient.post<ResponseBody<Question>>( `${ URL_SERVICE }/question/mark-exam/`, question );
+    public markQuestions( question: Question[] ): Observable<ResponseBody<Object>> {
+        return this.httpClient.post<ResponseBody<Object>>( `${ URL_SERVICE }/question/mark-questionnaire/`, question );
     }
 }

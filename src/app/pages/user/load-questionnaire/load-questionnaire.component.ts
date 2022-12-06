@@ -6,6 +6,7 @@ import { tap } from 'rxjs';
 import { QuestionnaireService } from '../../../services/questionnaire.service';
 import { Questionnaire } from '../../../models/Questionnaire';
 import { Category } from '../../../models/Category';
+import { ResponseBody } from '../../../models/ResponseBody';
 
 @Component({
   selector: 'app-load-questionnaire',
@@ -23,19 +24,13 @@ export class LoadQuestionnaireComponent implements OnInit {
             this.idCategory = params[ 'id' ];
 
             if( this.idCategory == 0 ) {
-                this.questionnaireService.getAllQuestionnairesActives().pipe(
-                    tap(( data: any ) => data.forEach(( questionnaire: any ) =>{
-                        const category = new Category( questionnaire.category.id, questionnaire.category.title, questionnaire.category.description  );
-                        this.listQuestionnaire.push( new Questionnaire( questionnaire.id, questionnaire.title, questionnaire.description, 
-                            questionnaire.maxPoints, questionnaire.numberQuestions, questionnaire.status, category  ) )} ))
-                ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
+                this.questionnaireService.getAllQuestionnairesActives()
+                .pipe( tap(( response: ResponseBody<Questionnaire[]> ) => this.listQuestionnaire = response.data as Questionnaire[] ))
+                .subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
             } else {
-                this.questionnaireService.getAllQuestionnairesActivesByCategory( this.idCategory ).pipe(
-                    tap(( data: any ) => data.forEach(( questionnaire: any ) =>{
-                        const category = new Category( questionnaire.category.id, questionnaire.category.title, questionnaire.category.description  );
-                        this.listQuestionnaire.push( new Questionnaire( questionnaire.id, questionnaire.title, questionnaire.description, 
-                            questionnaire.maxPoints, questionnaire.numberQuestions, questionnaire.status, category  ) )} ))
-                ).subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
+                this.questionnaireService.getAllQuestionnairesActivesByCategory( this.idCategory )
+                .pipe( tap(( response: ResponseBody<Questionnaire[]> ) => this.listQuestionnaire = response.data as Questionnaire[] ))
+                .subscribe({ error: () =>  Swal.fire( 'Error!!', 'Error loading Questionnaires', 'error' ) });
             }
         });
     }
